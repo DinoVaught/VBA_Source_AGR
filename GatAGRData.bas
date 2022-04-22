@@ -140,7 +140,6 @@ Private Sub PopulateSheet(rsData As ADODB.Recordset)
     Dim clsAGR As New AGR_Range
     Dim dataValid As New ValidateDatum
     Dim targetRow As Integer
-    Dim errData As String
     
     ClearData
     Set rsData = DisconnectRecordSet(rsData)
@@ -152,7 +151,6 @@ Private Sub PopulateSheet(rsData As ADODB.Recordset)
     
     rsData.MoveFirst
 
-    Dim cell As Range
 
     Do Until rsData.EOF = True
         
@@ -367,8 +365,6 @@ End Function
 Private Function DateValid() As Boolean
     On Error GoTo IsDateErrHandler
     
-    Dim trgtDate As Date
-    
     
     If IsDate(Range("D1").Value) = False Then
         Range("D1:H2").Select
@@ -385,8 +381,6 @@ Private Function DateValid() As Boolean
         Exit Function
     
     End If
-    
-    trgtDate = Range("D1").Value
     
     
     DateValid = True

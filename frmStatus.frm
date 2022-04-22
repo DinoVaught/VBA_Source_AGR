@@ -1,7 +1,4 @@
 Option Explicit
-Dim count As Integer
-
-' Private prgCounter As Integer
 
 Public Sub UpdateMain(sText As String)
     On Error Resume Next
@@ -60,6 +57,6 @@ Private Sub UserForm_Initialize()
     
 End Sub
 
-Private Sub UserForm_Terminate()
+'Private Sub UserForm_Terminate()
 '  prgCounter = prgCounter
-End Sub
+'End Sub

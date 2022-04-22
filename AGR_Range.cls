@@ -118,14 +118,11 @@ Public Property Let NET_Col(ByVal iValue As Integer)
 End Property
 
 Public Sub Initialize(gageID As String, partNum As String, StartCol As Integer)
-    Dim GageCell As Range
     Dim startRow As Integer
     
     errMsg = vbNullString
-    If startRow = 0 Then: startRow = 1
     
-'    Set GageCell = Sheets(ActiveSheet.Index).Range("B:B").Find(gageID)
-'    startRow = GageCell.row
+    startRow = 1
     
     If GageAndPartAreInSheet(gageID, partNum, startRow) = False Then
         LogMissingData ("Gage = " & gageID & vbCrLf & "Part Num = " & partNum & vbCrLf & "========================")
@@ -161,7 +158,6 @@ Private Function GageAndPartAreInSheet(gageID As String, partNum As String, ByRe
     GageAndPartAreInSheet = False
     
     rowCount = ActiveSheet.UsedRange.Rows.count
-    ' count = 1
     
     
 '    If gageID = "G08" Then

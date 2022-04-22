@@ -13,9 +13,9 @@ Public Sub ExportCode()
     basePath = ActiveWorkbook.Path & "\"
     
     If Left$(basePath, 3) = "C:\" Then
-        basePath = "C:\Delete\VBA_Modes\Local\"
+        basePath = "C:\Delete\VBA_Mods\Local\"
     Else
-        basePath = "C:\Delete\VBA_Modes\Network\"
+        basePath = "C:\Delete\VBA_Mods\Network\"
     End If
     
     
