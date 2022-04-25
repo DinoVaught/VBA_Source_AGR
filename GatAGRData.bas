@@ -174,69 +174,84 @@ Private Sub PopulateSheet(rsData As ADODB.Recordset)
     
             End Select
             
-            If IsNumeric(dataValid.MassageDatum(rsData!ST_1)) = False Then
+            If IsNumeric(dataValid.EvalStationCount(rsData!ST_1, rsData!Start_STN_1)) = False Then
                 Cells(targetRow, clsAGR.ST_1_Col).Value = "0"
                 Formatting.FormatCellOffsetColor targetRow, clsAGR.ST_1_Col
             Else
-                Cells(targetRow, clsAGR.ST_1_Col).Value = dataValid.MassageDatum(rsData!ST_1)
+                Cells(targetRow, clsAGR.ST_1_Col).Value = dataValid.EvalStationCount(rsData!ST_1, rsData!Start_STN_1)
             End If
             
-            If IsNumeric(dataValid.MassageDatum(rsData!ST_2)) = False Then
+            If IsNumeric(dataValid.EvalStationCount(rsData!ST_2, rsData!Start_STN_2)) = False Then
                 Cells(targetRow, clsAGR.ST_2_Col).Value = "0"
                 Formatting.FormatCellOffsetColor targetRow, clsAGR.ST_2_Col
             Else
-                Cells(targetRow, clsAGR.ST_2_Col).Value = dataValid.MassageDatum(rsData!ST_2)
+                Cells(targetRow, clsAGR.ST_2_Col).Value = dataValid.EvalStationCount(rsData!ST_2, rsData!Start_STN_2)
             End If
             
-            If IsNumeric(dataValid.MassageDatum(rsData!ST_3)) = False Then
+            If IsNumeric(dataValid.EvalStationCount(rsData!ST_3, rsData!Start_STN_3)) = False Then
                 Cells(targetRow, clsAGR.ST_3_Col).Value = "0"
                 Formatting.FormatCellOffsetColor targetRow, clsAGR.ST_3_Col
             Else
-                Cells(targetRow, clsAGR.ST_3_Col).Value = dataValid.MassageDatum(rsData!ST_3)
+                Cells(targetRow, clsAGR.ST_3_Col).Value = dataValid.EvalStationCount(rsData!ST_3, rsData!Start_STN_3)
             End If
             
-            If IsNumeric(dataValid.MassageDatum(rsData!ST_4)) = False Then
+            If IsNumeric(dataValid.EvalStationCount(rsData!ST_4, rsData!Start_STN_4)) = False Then
                 Cells(targetRow, clsAGR.ST_4_Col).Value = "0"
                 Formatting.FormatCellOffsetColor targetRow, clsAGR.ST_4_Col
             Else
-                Cells(targetRow, clsAGR.ST_4_Col).Value = dataValid.MassageDatum(rsData!ST_4)
+                Cells(targetRow, clsAGR.ST_4_Col).Value = dataValid.EvalStationCount(rsData!ST_4, rsData!Start_STN_4)
             End If
             
-            If IsNumeric(dataValid.MassageDatum(rsData!ST_5)) = False Then
+            If IsNumeric(dataValid.EvalStationCount(rsData!ST_5, rsData!Start_STN_5)) = False Then
                 Cells(targetRow, clsAGR.ST_5_Col).Value = "0"
                 Formatting.FormatCellOffsetColor targetRow, clsAGR.ST_5_Col
             Else
-                Cells(targetRow, clsAGR.ST_5_Col).Value = dataValid.MassageDatum(rsData!ST_5)
+                Cells(targetRow, clsAGR.ST_5_Col).Value = dataValid.EvalStationCount(rsData!ST_5, rsData!Start_STN_5)
             End If
             
-            If IsNumeric(dataValid.MassageDatum(rsData!ST_6)) = False Then
+            If IsNumeric(dataValid.EvalStationCount(rsData!ST_6, rsData!Start_STN_6)) = False Then
                 Cells(targetRow, clsAGR.ST_6_Col).Value = "0"
                 Formatting.FormatCellOffsetColor targetRow, clsAGR.ST_6_Col
             Else
-                Cells(targetRow, clsAGR.ST_6_Col).Value = dataValid.MassageDatum(rsData!ST_6)
+                Cells(targetRow, clsAGR.ST_6_Col).Value = dataValid.EvalStationCount(rsData!ST_6, rsData!Start_STN_6)
             End If
             
             If IsNumeric(dataValid.MassageDatum(rsData!Total)) = False Then
                 Cells(targetRow, clsAGR.Total_Col).Value = "0"
                 Formatting.FormatCellOffsetColor targetRow, clsAGR.Total_Col
             Else
-                Cells(targetRow, clsAGR.Total_Col).Value = dataValid.MassageDatum(rsData!Total)
+                If StationCountsAreCompleteRecords(targetRow, clsAGR.Total_Col, rsData!AGR) = True Then
+                    Cells(targetRow, clsAGR.Total_Col).Value = dataValid.MassageDatum(rsData!Total)
+                Else
+                    Cells(targetRow, clsAGR.Total_Col).Value = "0"
+                    Formatting.FormatCellOffsetColor targetRow, clsAGR.Total_Col
+                End If
             End If
             
-            
+
             If IsNumeric(dataValid.MassageDatum(rsData!AGR)) = False Then
                 Cells(targetRow, clsAGR.AGR_Col).Value = "0"
                 Formatting.FormatCellOffsetColor targetRow, clsAGR.AGR_Col
             Else
-                Cells(targetRow, clsAGR.AGR_Col).Value = dataValid.MassageDatum(rsData!AGR)
+                If StationCountsAreCompleteRecords(targetRow, clsAGR.Total_Col, rsData!AGR) = True Then
+                    Cells(targetRow, clsAGR.AGR_Col).Value = dataValid.MassageDatum(rsData!AGR)
+                Else
+                    Cells(targetRow, clsAGR.AGR_Col).Value = "0"
+                    Formatting.FormatCellOffsetColor targetRow, clsAGR.AGR_Col
+                End If
             End If
 
-            
+
             If IsNumeric(dataValid.MassageDatum(rsData!Net)) = False Then
                 Cells(targetRow, clsAGR.NET_Col).Value = "0"
                 Formatting.FormatCellOffsetColor targetRow, clsAGR.NET_Col
             Else
-                Cells(targetRow, clsAGR.NET_Col).Value = dataValid.MassageDatum(rsData!Net)
+                If StationCountsAreCompleteRecords(targetRow, clsAGR.Total_Col, rsData!AGR) = True Then
+                    Cells(targetRow, clsAGR.NET_Col).Value = dataValid.MassageDatum(rsData!Net)
+                Else
+                    Cells(targetRow, clsAGR.NET_Col).Value = "0"
+                    Formatting.FormatCellOffsetColor targetRow, clsAGR.NET_Col
+                End If
             End If
             
         End If
@@ -247,34 +262,33 @@ Private Sub PopulateSheet(rsData As ADODB.Recordset)
     
 End Sub
 
-'Private Sub MassageData(ByRef rsData As ADODB.Recordset)
-'
-'    On Error GoTo MassageDataErrHandler
-'
-'    Set rsData = DisconnectRecordSet(rsData)
-'
-'    rsData.MoveFirst
-'
-'    Do Until rsData.EOF = True
-'
-'        If Int(rsData!ST_1) < 0 Then
-'
-'        End If
-'
-'        rsData.MoveNext
-'    Loop
-'
-'
-'MassageDataExitPoint:
-'    On Error Resume Next
-'    Exit Sub
-'
-'MassageDataErrHandler:
-'
-'    MsgBox "Error occurred in MassageData" & vbCrLf & vbCrLf & Err.Description, vbOKOnly + vbExclamation, "Error"
-'    Resume MassageDataExitPoint
-'
-'End Sub
+
+' =================================================================================================
+' 4/25/2022
+' StationCountsAreCompleteRecords asseses data to check for the situation described below
+' StationCountsAreCompleteRecords is called/applied to the Total_Col, AGR_Col and NET_Col
+'==================================================================================================
+' 1) The Gage was offline when the record was inserted, each (start count field) was assigned 0s
+' 2) Then, the Gage was powered on, the PLC goes online,
+' 3) The record is flagged (complete).  Each (end count field) receives real and accurate (end count)
+' 4) When the math is applied (end count) - (start count = 0) the result is inaccurate, a highly inflated value
+Private Function StationCountsAreCompleteRecords(trgtRow As Integer, totCol As Integer, cellVal As String) As Boolean
+
+    
+    If cellVal = 0 Then
+        StationCountsAreCompleteRecords = True
+        Exit Function
+    End If
+    
+    StationCountsAreCompleteRecords = Not (Cells(trgtRow, totCol - 6).Value = 0 And _
+                                           Cells(trgtRow, totCol - 5).Value = 0 And _
+                                           Cells(trgtRow, totCol - 4).Value = 0 And _
+                                           Cells(trgtRow, totCol - 3).Value = 0 And _
+                                           Cells(trgtRow, totCol - 2).Value = 0 And _
+                                           Cells(trgtRow, totCol - 1).Value = 0)
+    
+
+End Function
 
 
 
@@ -364,7 +378,7 @@ End Function
 
 Private Function DateValid() As Boolean
     On Error GoTo IsDateErrHandler
-    
+
     
     If IsDate(Range("D1").Value) = False Then
         Range("D1:H2").Select
@@ -389,7 +403,7 @@ Private Function DateValid() As Boolean
 IsDateErrHandler:
     
     DateValid = False
-    MsgBox "invalid date!"
+    MsgBox "invalid date!", vbInformation, MessageCaption
     
 End Function
 

@@ -12,7 +12,6 @@ End Sub
 
 Public Sub UpdateDetails(sText As String)
     Me.txtDetails.Text = sText
-    ' Me.prgProgress.Value = Me.prgProgress.Value + 1
     UpdateProgressBar
     DoEvents
 End Sub
@@ -20,7 +19,7 @@ End Sub
 
 Private Sub UpdateProgressBar()
     On Error Resume Next
-    If Me.prgProgress.Value = Me.prgProgress.Max - 1 Then
+    If Me.prgProgress.Value >= Me.prgProgress.Max - 1 Then
         Me.prgProgress.Value = Me.prgProgress.Max
     Else
         Me.prgProgress.Value = Me.prgProgress.Value + 1
@@ -56,7 +55,3 @@ Private Sub UserForm_Initialize()
     Me.txtMain.Text = "Initializing"
     
 End Sub
-
-'Private Sub UserForm_Terminate()
-'  prgCounter = prgCounter
-'End Sub
